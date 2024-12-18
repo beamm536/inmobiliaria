@@ -33,11 +33,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.appclass.myapplication.R
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -71,7 +75,8 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleLarge,
             fontSize = 32.sp,
             color = Color(0xFF202c41),
-            modifier = Modifier.padding(bottom = 63.dp)
+            modifier = Modifier.padding(bottom = 63.dp),
+            //fontFamily = FuenteGoogle()
         )
 
 
@@ -81,7 +86,8 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
-            modifier = Modifier.align(Alignment.Start)
+            modifier = Modifier.align(Alignment.Start),
+            fontFamily = FuenteGoogle()
         )
 
         // Variables del formulario para la base de datos
@@ -248,7 +254,21 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
     }
 }
 
-
+//@Composable
+//fun FuenteGoogle(): FontFamily{
+//    val provider = GoogleFont.Provider(
+//        providerAuthority = "com.google.android.gms.fonts",
+//        providerPackage = "com.google.android.gms",
+//        certificates = R.array.com_google_android_gms_fonts_certs
+//        //esta fuente necesita un archivo array.xml que se genera con la importacion, y en el
+//        //resources value --> com_google_android_gms_fonts_certs
+//    )
+//    val font = GoogleFont("Poppins") // Nombre de la fuente
+//
+//    return FontFamily(
+//        Font(googleFont = font, fontProvider = provider)
+//    )
+//}
 
 
 
