@@ -3,6 +3,8 @@ package com.appclass.myapplication.screens
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,6 +44,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.appclass.myapplication.R
+import com.appclass.myapplication.ui.theme.GrisFondo
+import com.appclass.myapplication.ui.theme.GrisOutlined
+import com.appclass.myapplication.ui.theme.Purple40
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -82,12 +87,12 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
 
 
         Text(
-            text = "1. Datos personales",
-            style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
-            fontWeight = FontWeight.Bold,
+            text = "1. Nombre Completo",
+            //style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
+            //fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             modifier = Modifier.align(Alignment.Start),
-            fontFamily = FuenteGoogle()
+            //fontFamily = FuenteGoogle()
         )
 
         // Variables del formulario para la base de datos
@@ -104,17 +109,17 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             value = nombre,
             onValueChange = { nombre = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
+                .fillMaxWidth(),
+                //.height(56.dp),
             singleLine = true,
             label = { Text("Nombre") },
             shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF369d7c),
-                unfocusedBorderColor = Color(0xFF8a9196),
-                focusedLabelColor = Color(0xFF369d7c),
-                unfocusedLabelColor = Color(0xFF8a9196),
-                cursorColor = Color(0xFF369d7c)
+                focusedBorderColor = GrisOutlined,
+                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
+                focusedLabelColor = GrisOutlined,
+                unfocusedLabelColor = GrisOutlined,
+                cursorColor = GrisOutlined
             )
         )
 
@@ -124,50 +129,27 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             value = apellidos,
             onValueChange = { apellidos = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
+                .fillMaxWidth(),
+                //.height(56.dp),
             label = { Text("Apellidos") },
             shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF369d7c),
-                unfocusedBorderColor = Color(0xFF8a9196),
-                focusedLabelColor = Color(0xFF369d7c),
-                unfocusedLabelColor = Color(0xFF8a9196),
-                cursorColor = Color(0xFF369d7c)
+                focusedBorderColor = GrisOutlined,
+                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
+                focusedLabelColor = GrisOutlined,
+                unfocusedLabelColor = GrisOutlined,
+                cursorColor = GrisOutlined
             )
         )
-        Spacer(modifier = Modifier.size(8.dp))
-
-        OutlinedTextField(
-            value = dni,
-            onValueChange = { input ->
-                dni = input.filter { it.isLetterOrDigit() } //para no permitir mas caracteres q no sean letras ni numeros
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            label = { Text("DNI/NIE") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-            shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF369d7c),
-                unfocusedBorderColor = Color(0xFF8a9196),
-                focusedLabelColor = Color(0xFF369d7c),
-                unfocusedLabelColor = Color(0xFF8a9196),
-                cursorColor = Color(0xFF369d7c)
-            )
-        )
-
-        Spacer(modifier = Modifier.size(8.dp))
 
 
 
         Spacer(modifier = Modifier.size(32.dp))
 
         Text(
-            text = "2. Datos de contacto",
-            style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
-            fontWeight = FontWeight.Bold,
+            text = "2. Datos de Contacto",
+            //style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
+            //fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             modifier = Modifier.align(Alignment.Start)
         )
@@ -176,23 +158,23 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             value = telefono,
             onValueChange = { telefono = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            label = { Text("NºTeléfono") },
+                .fillMaxWidth(),
+                //.height(56.dp),
+            label = { Text("Tlfno") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF369d7c),
-                unfocusedBorderColor = Color(0xFF8a9196),
-                focusedLabelColor = Color(0xFF369d7c),
-                unfocusedLabelColor = Color(0xFF8a9196),
-                cursorColor = Color(0xFF369d7c)
+                focusedBorderColor = GrisOutlined,
+                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
+                focusedLabelColor = GrisOutlined,
+                unfocusedLabelColor = GrisOutlined,
+                cursorColor = GrisOutlined
             ),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Call,
                     contentDescription = "Phone Icon",
-                    tint = Color(0xFF369d7c) //aqui para el cambio de color
+                    tint = Color(0xFF539DF3) //aqui para el cambio de color
                 )
             }
         )
@@ -203,24 +185,24 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
             value = email,
             onValueChange = { email = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
+                .fillMaxWidth(),
+                //.height(56.dp),
             label = { Text("Email") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF369d7c),
-                unfocusedBorderColor = Color(0xFF369d7c),//color del borde - 0xFF8a9196
-                focusedLabelColor = Color(0xFF369d7c),
-                unfocusedLabelColor = Color(0xFF8a9196),
-                cursorColor = Color(0xFF369d7c)
+                focusedBorderColor = GrisOutlined,
+                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
+                focusedLabelColor = GrisOutlined,
+                unfocusedLabelColor = GrisOutlined,
+                cursorColor = GrisOutlined
             ),
 
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
                     contentDescription = "Email Icon",
-                    tint = Color(0xFF369d7c) //aqui para el cambio de color
+                    tint = Color(0xFF539DF3) //aqui para el cambio de color
                 )
             }
         )
@@ -270,10 +252,18 @@ fun CamposFormulario(modifier: Modifier = Modifier) {
 //    )
 //}
 
-
+@Composable
+fun ColorDeFondo(){
+    Box (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(GrisFondo)
+    )
+}
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LlamadaFunciones(navController: NavController, modifier: Modifier = Modifier) {
+    ColorDeFondo()
     CamposFormulario(modifier = modifier)
 }
