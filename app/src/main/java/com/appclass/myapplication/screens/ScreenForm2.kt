@@ -37,8 +37,8 @@ import androidx.navigation.NavController
 import com.appclass.myapplication.ui.theme.GrisOutlined
 
 @Composable
-fun ScreenForm1(navController: NavController){
-    FunctionsCall(
+fun ScreenForm2(navController: NavController){
+    FunctionsCall3(
         navController = navController,
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +47,7 @@ fun ScreenForm1(navController: NavController){
 }
 
 @Composable
-fun FormFields(navController: NavController,modifier: Modifier = Modifier){
+fun FormFields3(modifier: Modifier = Modifier){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -56,7 +56,7 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
     ) {
         Spacer(modifier = Modifier.size(130.dp))
         Text(
-            text = "Datos de reserva",
+            text = "Datos de reserva _ parte2",
             style = MaterialTheme.typography.titleLarge,
             fontSize = 32.sp,
             color = Color(0xFF202c41),
@@ -189,9 +189,7 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.size(32.dp))
 
         Button(
-            onClick = {
-                navController.navigate("screenForm2")
-            },
+            onClick = { /* Acción de siguiente */ },
             colors = ButtonDefaults.buttonColors(Color(0xFF3F51B5)),
             shape = RoundedCornerShape(50.dp),
             modifier = Modifier
@@ -211,6 +209,6 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
 }
 
 @Composable
-fun FunctionsCall(navController: NavController, modifier: Modifier = Modifier){
-    FormFields(navController,modifier = modifier)
+fun FunctionsCall3(navController: NavController, modifier: Modifier = Modifier){
+    FormFields3(modifier = modifier)
 }
