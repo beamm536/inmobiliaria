@@ -68,7 +68,8 @@ fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifi
                 "Tema Oscuro"
             }else{
                 "Tema Claro"
-            }
+            },
+            color = MaterialTheme.colorScheme.onBackground,
         )
         Switch(
             checked = isDarkTheme,
@@ -79,7 +80,7 @@ fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifi
                         imageVector = Icons.Filled.Favorite, //aqui tendria q poner el icono de la luna en el switch, pero me da error
                         contentDescription = null,
                         modifier = Modifier
-                            .size(64.dp)
+                            .size(40.dp)
                     )
                 }else{
 
@@ -87,7 +88,7 @@ fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifi
                         imageVector = Icons.Filled.FavoriteBorder, //aqui tendria q poner el icono de la luna en el switch, pero me da error
                         contentDescription = null,
                         modifier = Modifier
-                            .size(64.dp)
+                            .size(40.dp)
                     )
 
                 }
@@ -123,6 +124,7 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
             //style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
             //fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.align(Alignment.Start),
             //fontFamily = FuenteGoogle()
         )
