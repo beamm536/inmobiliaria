@@ -1,5 +1,6 @@
 package com.appclass.myapplication.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,13 +16,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,12 +44,59 @@ import com.appclass.myapplication.ui.theme.GrisOutlined
 
 @Composable
 fun ScreenForm1(navController: NavController){
+    var isDarkTheme by remember{ mutableStateOf(false) } //estado del tema
+
     FunctionsCall(
         navController = navController,
+        isDarkTheme = isDarkTheme,
+        onThemeChange = { isDarkTheme = it },
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     )
+}
+
+@Composable
+fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifier: Modifier = Modifier){
+
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+    ){
+        Text(
+            text = if(isDarkTheme){
+                "Tema Oscuro"
+            }else{
+                "Tema Claro"
+            }
+        )
+        Switch(
+            checked = isDarkTheme,
+            onCheckedChange = onThemeChange,
+            thumbContent = {
+                if (isDarkTheme){
+                    Icon(
+                        imageVector = Icons.Filled.Favorite, //aqui tendria q poner el icono de la luna en el switch, pero me da error
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(64.dp)
+                    )
+                }else{
+
+                    Icon(
+                        imageVector = Icons.Filled.FavoriteBorder, //aqui tendria q poner el icono de la luna en el switch, pero me da error
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(64.dp)
+                    )
+
+                }
+            }
+        )
+    }
+
+
+
 }
 
 @Composable
@@ -59,12 +112,11 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
             text = "Datos de reserva",
             style = MaterialTheme.typography.titleLarge,
             fontSize = 32.sp,
-            color = Color(0xFF202c41),
+            //color = Color(0xFF202c41),
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(bottom = 63.dp),
             //fontFamily = FuenteGoogle()
         )
-
-
 
         Text(
             text = "1. Nombre Completo",
@@ -94,11 +146,16 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
             label = { Text("Nombre") },
             shape = MaterialTheme.shapes.large.copy(all = CornerSize(50.dp)),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = GrisOutlined,
-                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
-                focusedLabelColor = GrisOutlined,
-                unfocusedLabelColor = GrisOutlined,
-                cursorColor = GrisOutlined
+//                focusedBorderColor = GrisOutlined,
+//                unfocusedBorderColor = GrisOutlined,//color del borde - 0xFF8a9196
+//                focusedLabelColor = GrisOutlined,
+//                unfocusedLabelColor = GrisOutlined,
+//                cursorColor = GrisOutlined
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.onSurface,
+                cursorColor = MaterialTheme.colorScheme.primary
             )
         )
 
@@ -211,6 +268,53 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
 }
 
 @Composable
-fun FunctionsCall(navController: NavController, modifier: Modifier = Modifier){
-    FormFields(navController,modifier = modifier)
+fun FunctionsCall(
+        navController: NavController,
+        isDarkTheme: Boolean,
+        onThemeChange: (Boolean) -> Unit,
+        modifier: Modifier = Modifier
+){
+    //todo tiene q estar dentro del componente MaterialTheme para q se cambie de manera global
+    MaterialTheme(
+        colorScheme =
+            if (isDarkTheme){
+                darkColorScheme()
+            }else{
+                lightColorScheme()
+            }
+    ){
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background) // Color de fondo
+                .padding(16.dp)
+        ){
+            ThemeSelector(isDarkTheme = isDarkTheme, onThemeChange = onThemeChange)
+            Spacer(modifier = Modifier.height(16.dp))
+            FormFields(navController)
+        }
+    }
+    //FormFields(navController,modifier = modifier)
 }
+
+
+//colores q van a cambiar dentro de la vista
+@Composable
+fun darkColorScheme() = darkColorScheme(
+    primary = Color(0xFFBB86FC),
+    onPrimary = Color.White,
+    background = Color(0xFF121212),
+    onBackground = Color.White,
+    surface = Color(0xFF1F1F1F),
+    onSurface = Color.White
+)
+
+@Composable
+fun lightColorScheme() = lightColorScheme(
+    primary = Color(0xFF6200EE),
+    onPrimary = Color.White,
+    background = Color(0xFFFFFFFF),
+    onBackground = Color.Black,
+    surface = Color(0xFFEEEEEE),
+    onSurface = Color.Black
+)
