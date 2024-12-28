@@ -180,7 +180,9 @@ fun FormFields3(modifier: Modifier = Modifier){
 //            }
         )
 
-        Spacer(modifier = Modifier.size(32.dp))
+
+//todo PQ AQUI NO ME DEJA INCORPORAR LA FUNCION DE LA IMAGEN HACIENDOSE VISIBLE TANTO EL BTN COMO LA IMG??????
+
 
         Button(
             onClick = { /* Acción de siguiente */ },
@@ -199,6 +201,8 @@ fun FormFields3(modifier: Modifier = Modifier){
                 tint = Color.White
             )
         }
+
+        ImgDecorativa(modifier)
     }
 }
 
@@ -208,6 +212,8 @@ fun ImgDecorativa(modifier: Modifier = Modifier){
         painter = painterResource(id = R.drawable.img_formulario_inmobiliaria), //cambiar esta imagen por el logo de la inmobiliaria
         contentDescription = "Header",
         modifier = modifier
+            .width(30.dp)
+            .height(10.dp)
     )
 }
 
