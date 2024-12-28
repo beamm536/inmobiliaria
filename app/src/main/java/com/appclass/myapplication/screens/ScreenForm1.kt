@@ -108,7 +108,7 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
             .fillMaxSize()
             .padding(start = 10.dp)
     ) {
-        Spacer(modifier = Modifier.size(130.dp))
+        Spacer(modifier = Modifier.size(75.dp))
         Text(
             text = "Datos de reserva",
             style = MaterialTheme.typography.titleLarge,
