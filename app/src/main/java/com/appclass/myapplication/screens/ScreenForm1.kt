@@ -1,7 +1,9 @@
 package com.appclass.myapplication.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,52 +58,10 @@ fun ScreenForm1(navController: NavController){
     )
 }
 
-@Composable
-fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifier: Modifier = Modifier){
 
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-    ){
-        Text(
-            text = if(isDarkTheme){
-                "Tema Oscuro"
-            }else{
-                "Tema Claro"
-            },
-            color = MaterialTheme.colorScheme.onBackground,
-        )
-        Switch(
-            checked = isDarkTheme,
-            onCheckedChange = onThemeChange,
-            thumbContent = {
-                if (isDarkTheme){
-                    Icon(
-                        imageVector = Icons.Filled.Favorite, //aqui tendria q poner el icono de la luna en el switch, pero me da error
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-                }else{
-
-                    Icon(
-                        imageVector = Icons.Filled.FavoriteBorder, //aqui tendria q poner el icono de la luna en el switch, pero me da error
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(40.dp)
-                    )
-
-                }
-            }
-        )
-    }
-
-
-
-}
 
 @Composable
-fun FormFields(navController: NavController,modifier: Modifier = Modifier){
+fun FormFields(navController: NavController, isDarkTheme: Boolean, onThemeChange: (Boolean) -> kotlin.Unit,modifier: Modifier = Modifier){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -266,8 +226,62 @@ fun FormFields(navController: NavController,modifier: Modifier = Modifier){
                 tint = Color.White
             )
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        //todo paremtro fun principal form
+        ThemeSelector(
+            isDarkTheme = isDarkTheme, onThemeChange = onThemeChange
+        )
+
+        //ThemeSelector()
     }
 }
+
+@Composable
+fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifier: Modifier = Modifier){
+
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+    ){
+        Text(
+            text = if(isDarkTheme){
+                "Tema Oscuro"
+            }else{
+                "Tema Claro"
+            },
+            color = MaterialTheme.colorScheme.onBackground,
+        )
+        Switch(
+            checked = isDarkTheme,
+            onCheckedChange = onThemeChange,
+            thumbContent = {
+                if (isDarkTheme){
+                    Icon(
+                        imageVector = Icons.Filled.Favorite, //aqui tendria q poner el icono de la luna en el switch, pero me da error
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(40.dp)
+                    )
+                }else{
+
+                    Icon(
+                        imageVector = Icons.Filled.FavoriteBorder, //aqui tendria q poner el icono de la luna en el switch, pero me da error
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(40.dp)
+                    )
+
+                }
+            }
+        )
+    }
+
+
+
+}
+
 
 @Composable
 fun FunctionsCall(
@@ -289,11 +303,27 @@ fun FunctionsCall(
             modifier = modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background) // Color de fondo
-                .padding(16.dp)
+                //.padding(16.dp)
         ){
-            ThemeSelector(isDarkTheme = isDarkTheme, onThemeChange = onThemeChange)
-            Spacer(modifier = Modifier.height(16.dp))
-            FormFields(navController)
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+            ){
+                FormFields(navController, isDarkTheme, onThemeChange)
+            }
+
+            //Spacer(modifier = Modifier.height(16.dp))
+
+//            Box (
+//               // verticalAlignment = Alignment.CenterVertically,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .background(Color.Gray)
+//                    .padding(bottom = 30.dp)
+//            ){
+//                ThemeSelector(isDarkTheme = isDarkTheme, onThemeChange = onThemeChange)
+//            }
+
         }
     }
     //FormFields(navController,modifier = modifier)
