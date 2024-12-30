@@ -1,7 +1,9 @@
 package com.appclass.myapplication.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -180,29 +182,39 @@ fun FormFields3(modifier: Modifier = Modifier){
 //            }
         )
 
-
-//todo PQ AQUI NO ME DEJA INCORPORAR LA FUNCION DE LA IMAGEN HACIENDOSE VISIBLE TANTO EL BTN COMO LA IMG??????
-
-
-        Button(
-            onClick = { /* Acción de siguiente */ },
-            colors = ButtonDefaults.buttonColors(Color(0xFF3F51B5)),
-            shape = RoundedCornerShape(50.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-                .height(50.dp)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
         ) {
-            Text("enviar", color = Color.White, fontSize = 18.sp)
-            Spacer(modifier = Modifier.width(8.dp))
-            Icon(
-                Icons.Default.Send,
-                contentDescription = "enviar formulario",
-                tint = Color.White
+            ImgDecorativa(
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
             )
         }
 
-        ImgDecorativa(modifier)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+        ){
+            Button(
+                onClick = { /* Acción de siguiente */ },
+                colors = ButtonDefaults.buttonColors(Color(0xFF3F51B5)),
+                shape = RoundedCornerShape(50.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
+                    .height(50.dp)
+            ) {
+                Text("enviar", color = Color.White, fontSize = 18.sp)
+                Spacer(modifier = Modifier.width(8.dp))
+                Icon(
+                    Icons.Default.Send,
+                    contentDescription = "enviar formulario",
+                    tint = Color.White
+                )
+            }
+        }
     }
 }
 
@@ -210,10 +222,10 @@ fun FormFields3(modifier: Modifier = Modifier){
 fun ImgDecorativa(modifier: Modifier = Modifier){
     Image(
         painter = painterResource(id = R.drawable.img_formulario_inmobiliaria), //cambiar esta imagen por el logo de la inmobiliaria
-        contentDescription = "Header",
+        contentDescription = "img formulario enviar",
         modifier = modifier
-            .width(30.dp)
-            .height(10.dp)
+            .width(230.dp)
+            .height(200.dp)
     )
 }
 

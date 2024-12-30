@@ -18,7 +18,7 @@ import com.appclass.myapplication.ui.login.ui.LoginScreen
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavigationWrapper(navHostController: NavHostController){
-    NavHost(navController = navHostController, startDestination = "screenForm2") {
+    NavHost(navController = navHostController, startDestination = "screenForm1") {
         composable("pantallaFormulario1") { PantallaFormulario1(navHostController) }
         composable("pantalla2") { Pantalla2(navHostController) }
         composable("screenForm1") { ScreenForm1(navHostController) }
