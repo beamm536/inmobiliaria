@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.appclass.myapplication.R
 import com.appclass.myapplication.ui.theme.GrisOutlined
+import com.appclass.myapplication.ui.theme.Poppins
 
 @Composable
 fun ScreenForm2(navController: NavController){
@@ -63,7 +64,8 @@ fun FormFields3(modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.size(75.dp))
         Text(
             text = "Datos de reserva",
-            style = MaterialTheme.typography.titleLarge,
+            //style = MaterialTheme.typography.titleLarge,
+            fontFamily = Poppins,
             fontSize = 32.sp,
             color = Color(0xFF202c41),
             modifier = Modifier.padding(bottom = 63.dp),
