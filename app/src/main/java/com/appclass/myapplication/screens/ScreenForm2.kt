@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,7 +65,8 @@ fun FormFields3(modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.size(75.dp))
         Text(
             text = "Datos de reserva",
-            //style = MaterialTheme.typography.titleLarge,
+            //style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold,
             fontFamily = Poppins,
             fontSize = 32.sp,
             color = Color(0xFF202c41),
@@ -77,7 +79,8 @@ fun FormFields3(modifier: Modifier = Modifier){
         Text(
             text = "3. Datos de Domicilio",
             //style = MaterialTheme.typography.titleSmall.copy(color = Color(0xFF00B0FF)),
-            //fontWeight = FontWeight.Bold,
+            fontFamily = Poppins,
+            //style = MaterialTheme.typography.titleLarge, //titleLarge va a hacer referencia al FontWeight_Bold
             fontSize = 16.sp,
             modifier = Modifier.align(Alignment.Start),
             //fontFamily = FuenteGoogle()

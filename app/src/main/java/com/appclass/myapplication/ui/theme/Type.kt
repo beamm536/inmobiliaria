@@ -20,7 +20,8 @@ import com.appclass.myapplication.R
 
     //para incorporar nueva fuente  => POPPINS
     val Poppins = FontFamily(
-        Font(R.font.poppins_regular, FontWeight.Normal)
+        Font(R.font.poppins_regular, FontWeight.Normal),
+        Font(R.font.poppins_bold, FontWeight.Bold)
     )
 
     //definimos el esquema de la tipografia --> esto es lo que hace que lo coja del archivo theme dnd se define la fuente
@@ -29,6 +30,12 @@ import com.appclass.myapplication.R
             fontFamily = Poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
+            lineHeight = 24.sp
+        ),
+        titleLarge = TextStyle(
+            fontFamily = Poppins,
+            fontWeight = FontWeight.Bold,
+            fontSize = 22.sp,
             lineHeight = 24.sp
         )
     )
