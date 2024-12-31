@@ -1,5 +1,6 @@
  package com.appclass.myapplication
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,12 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.appclass.myapplication.ui.login.ui.LoginScreen
+import com.appclass.myapplication.ui.login.ui.LoginViewModel
 import com.appclass.myapplication.ui.theme.MyApplicationTheme
 
  class MainActivity : ComponentActivity() {
 
      private lateinit var navHostController: NavHostController
 
+     @SuppressLint("ViewModelConstructorInComposable")// anotacion para q no me de error mas abajo :)
      @RequiresApi(Build.VERSION_CODES.O)
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -32,6 +36,8 @@ import com.appclass.myapplication.ui.theme.MyApplicationTheme
          setContent {
              navHostController = rememberNavController()
              NavigationWrapper(navHostController)
+
+             LoginScreen(LoginViewModel())
          }
      }
  }

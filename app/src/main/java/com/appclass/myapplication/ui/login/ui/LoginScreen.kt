@@ -66,7 +66,7 @@ fun Login(modifier: Modifier, viewModel: LoginViewModel) {
             Spacer(modifier = Modifier.padding(4.dp))
             PasswordField(password) { viewModel.onLoginChanged(email, it) }
             Spacer(modifier = Modifier.padding(8.dp))
-            ForgotPassword(Modifier.align(Alignment.End))
+            ForgotPassword(Modifier.align(Alignment.End)) //para q se pegue a la derecha de la columna
             Spacer(modifier = Modifier.padding(16.dp))
             LoginButton(loginEnable) {
                 coroutineScope.launch {
@@ -99,7 +99,7 @@ fun LoginButton(loginEnable: Boolean, onLoginSelected: () -> Unit) {
 fun ForgotPassword(modifier: Modifier) {
     Text(
         text = "Olvidaste la contraseña?",
-        modifier = modifier.clickable { },
+        modifier = modifier.clickable { }, // para q cuando hagamos click en el texto q navegue a la siguiente pagian
         fontSize = 12.sp,
         fontWeight = FontWeight.Bold,
         color = Color(0xFFFB9600)
@@ -134,8 +134,8 @@ fun EmailField(email: String, onTextFieldChanged: (String) -> Unit) {
         modifier = Modifier.fillMaxWidth(),
         placeholder = { Text(text = "Email") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        singleLine = true,
-        maxLines = 1,
+        singleLine = true,//cuando pulsemos enter en el teclado q no se amplie el text field
+        maxLines = 1, // acompaña a singleLine
         colors = TextFieldDefaults.textFieldColors(
             //textColor = Color(0xFF636262), // Color del texto
             containerColor = Color(0xFFDEDDDD),

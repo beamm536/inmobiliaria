@@ -281,14 +281,14 @@ fun IndicadorProgreso(){
 @Composable
 fun IndicadorProgresoConPasos() {
     // Variables necesarias
-    var progress by remember { mutableStateOf(0.0f) } // Progreso inicial
+    var progress by remember { mutableStateOf(0.5f) } // Progreso inicial
     val animatedProgress = animateFloatAsState(
         targetValue = progress,
         animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
     ).value
 
     // Definimos los pasos
-    val steps = listOf("Paso 1", "Paso 2", "Paso 3") // Cambia según el número de pasos
+    val steps = listOf("1", "2", "3")
     val currentStep = (progress * steps.size).toInt()
 
     Column(
