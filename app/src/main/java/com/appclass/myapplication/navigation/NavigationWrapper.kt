@@ -1,4 +1,4 @@
-package com.appclass.myapplication
+package com.appclass.myapplication.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -11,19 +11,20 @@ import com.appclass.myapplication.screens.Pantalla2
 import com.appclass.myapplication.screens.PantallaFormulario1
 import com.appclass.myapplication.screens.ScreenForm1
 import com.appclass.myapplication.screens.ScreenForm2
-import androidx.navigation.compose.rememberNavController
 import com.appclass.myapplication.ui.login.ui.LoginScreen
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavigationWrapper(navHostController: NavHostController){
-    NavHost(navController = navHostController, startDestination = "loginScreen") {
-        composable("pantallaFormulario1") { PantallaFormulario1(navHostController) }
-        composable("pantalla2") { Pantalla2(navHostController) }
-        composable("screenForm1") { ScreenForm1(navHostController) }
-        composable("screenForm2") { ScreenForm2(navHostController) }
-        composable("loginScreen"){ LoginScreen(viewModel()) }
+    NavHost(navController = navHostController, startDestination = AppScreens.ScreenForm1.ruta) {
+        //para lincarlo con la sealed class --> cambiamos startDestination
+
+//        composable("pantallaFormulario1") { PantallaFormulario1(navHostController) }
+//        composable("pantalla2") { Pantalla2(navHostController) }
+//        composable("screenForm1") { ScreenForm1(navHostController) }
+//        composable("screenForm2") { ScreenForm2(navHostController) }
+//        composable("loginScreen"){ LoginScreen(viewModel()) }
     }
 }
 

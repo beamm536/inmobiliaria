@@ -41,15 +41,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.appclass.myapplication.ui.theme.GrisOutlined
 
 @Composable
-fun ScreenForm1(navController: NavController){
+fun ScreenForm1(ViewModel: ViewModel/*navController: NavController*/){
     var isDarkTheme by remember{ mutableStateOf(false) } //estado del tema
 
     FunctionsCall(
-        navController = navController,
+       // navController = navController,
         isDarkTheme = isDarkTheme,
         onThemeChange = { isDarkTheme = it },
         modifier = Modifier
@@ -61,7 +62,7 @@ fun ScreenForm1(navController: NavController){
 
 
 @Composable
-fun FormFields(navController: NavController, isDarkTheme: Boolean, onThemeChange: (Boolean) -> kotlin.Unit,modifier: Modifier = Modifier){
+fun FormFields(/*navController: NavController,*/ isDarkTheme: Boolean, onThemeChange: (Boolean) -> kotlin.Unit,modifier: Modifier = Modifier){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -209,7 +210,7 @@ fun FormFields(navController: NavController, isDarkTheme: Boolean, onThemeChange
 
         Button(
             onClick = {
-                navController.navigate("screenForm2")
+                //navController.navigate("screenForm2")
             },
             colors = ButtonDefaults.buttonColors(Color(0xFF3F51B5)),
             shape = RoundedCornerShape(50.dp),
@@ -285,7 +286,7 @@ fun ThemeSelector(isDarkTheme: Boolean, onThemeChange: (Boolean) -> Unit, modifi
 
 @Composable
 fun FunctionsCall(
-        navController: NavController,
+       // navController: NavController,
         isDarkTheme: Boolean,
         onThemeChange: (Boolean) -> Unit,
         modifier: Modifier = Modifier
@@ -309,7 +310,7 @@ fun FunctionsCall(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
             ){
-                FormFields(navController, isDarkTheme, onThemeChange)
+                FormFields(/*navController, */isDarkTheme, onThemeChange)
             }
 
             //Spacer(modifier = Modifier.height(16.dp))
