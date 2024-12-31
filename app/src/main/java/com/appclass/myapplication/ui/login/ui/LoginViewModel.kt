@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.delay
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : ViewModel() { //nuestra clase extiende de ViewModel
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> = _email
+    //LiveData --> es como el remember mutableStateOf
+
+    private val _email = MutableLiveData<String>() // variable privada
+    val email: LiveData<String> = _email // variable de tipo LiveData == _email
 
     private val _password = MutableLiveData<String>()
     val password: LiveData<String> = _password

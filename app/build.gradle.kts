@@ -53,6 +53,8 @@ dependencies {
 
     implementation ("androidx.compose.material3:material3:1.2.0")
     implementation("androidx.compose.ui:ui-text-google-fonts:1.2.0") //1.7.5
+    //para la utilizacion de view-model
+    implementation("androidx.lifecycle:lifecycle-runtime-testing-android:2.9.0-alpha08")
 
 
     implementation(libs.androidx.core.ktx)

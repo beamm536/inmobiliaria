@@ -1,5 +1,6 @@
 package com.appclass.myapplication.screens
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,14 +18,18 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -235,6 +240,128 @@ fun ImgDecorativa(modifier: Modifier = Modifier){
 }
 
 @Composable
+fun IndicadorProgreso(){
+
+    //variables necesarias
+    var progress by remember { mutableStateOf(0.5f) }
+    val animatedProgress = animateFloatAsState(
+        targetValue = progress,
+        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+    ).value
+
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+    ){
+        LinearProgressIndicator(progress = animatedProgress)
+        Spacer(Modifier.height(30.dp))
+        Row {
+            OutlinedButton(
+                onClick = {
+                    if (progress < 1f) progress += 0.5f
+                }
+            ) {
+                Text("Increase")
+            }
+
+            OutlinedButton(
+                onClick = {
+                    if (progress > 0f) progress -= 0.5f
+                }
+            ) {
+                Text("Decrease")
+            }
+        }
+
+    }
+
+}
+
+@Composable
+fun IndicadorProgresoConPasos() {
+    // Variables necesarias
+    var progress by remember { mutableStateOf(0.5f) } // Progreso inicial
+    val animatedProgress = animateFloatAsState(
+        targetValue = progress,
+        animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec
+    ).value
+
+    // Definimos los pasos
+    val steps = listOf("1", "2", "3")
+    val currentStep = (progress * steps.size).toInt()
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        // Indicador de progreso lineal
+        LinearProgressIndicator(
+            progress = animatedProgress,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+        )
+        Spacer(Modifier.height(16.dp))
+
+        // Números debajo del indicador
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            steps.forEachIndexed { index, step ->
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    // Ícono: Check si está completado, número si no lo está
+                    if (index < currentStep) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = null,
+                            tint = Color.Green,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    } else {
+                        Text(
+                            text = (index + 1).toString(),
+                            color = if (index == currentStep) Color.Black else Color.Gray
+                        )
+                    }
+                    // Etiqueta del paso
+                    Text(
+                        text = step
+                    )
+                }
+            }
+        }
+
+        Spacer(Modifier.height(30.dp))
+
+        // Botones para incrementar/disminuir el progreso
+        Row {
+            OutlinedButton(
+                onClick = {
+                    if (progress < 1f) progress += 1f / steps.size
+                }
+            ) {
+                Text("Siguiente")
+            }
+
+            OutlinedButton(
+                onClick = {
+                    if (progress > 0f) progress -= 1f / steps.size
+                }
+            ) {
+                Text("Anterior")
+            }
+        }
+    }
+}
+
+
+@Composable
 fun FunctionsCall3(navController: NavController, modifier: Modifier = Modifier){
+    //IndicadorProgreso()
+    IndicadorProgresoConPasos()
     FormFields3(modifier = modifier)
 }
